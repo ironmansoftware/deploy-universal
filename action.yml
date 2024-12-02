@@ -1,0 +1,25 @@
+name: 'Deploy PowerShell Universal'
+description: 'Deploys the current repository to a PowerShell Universal cluster.'
+inputs:
+  url: 
+    description: 'The URL to an instance of PowerShell Universal.'
+    required: true
+  apptoken: 
+    description: 'An app token to use for authentication.'
+    required: true
+  name:
+    description: 'Name of this deployment.'
+    required: true
+    default: 'PowerShellUniversal'
+  version:
+    description: 'Version of this deployment'
+    required: true
+    default: '1.0.0'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.url }}
+    - ${{ inputs.apptoken }}
+    - ${{ inputs.name }}
+    - ${{ inputs.version }}
