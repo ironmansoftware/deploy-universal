@@ -8,8 +8,8 @@ $ErrorActionPreference = "Stop"
 New-Item -Path /github/workspace/publish -ItemType Directory
 
 New-ModuleManifest -Path /github/workspace/$name.psd1 -ModuleVersion $Version -Description $Description 
-Publish-PSResource -Path /github/workspace -DestinationPath ./publish/$Name.$Version.nupkg
+Publish-PSResource -Path /github/workspace -DestinationPath /github/workspace/publish/$Name.$Version.nupkg
 
 Invoke-WebRequest -Uri $Url -Headers @{
     "Authorization" = "Bearer $AppToken"
-} -InFile ./publish/$Name.$Version.nupkg -Method Put -ContentType "application/octet-stream"
+} -InFile /github/workspace/publish/$Name.$Version.nupkg -Method Put -ContentType "application/octet-stream"
