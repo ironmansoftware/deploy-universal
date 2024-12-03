@@ -4,6 +4,8 @@ $Name = $args[2]
 $Version = $args[3]
 $Description = $args[4]
 
+Install-Module -Name Microsoft.PowerShell.PSResourceGet -AllowPrerelease
+
 $ErrorActionPreference = "Stop"
 New-Item -Path /github/workspace/publish -ItemType Directory
 
