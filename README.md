@@ -20,6 +20,10 @@ This action deploys a PowerShell Universal configuration to a Universal server. 
 
 **Required** The version of the configuration to deploy. Defaults to `1.0.0`.
 
+## `description`
+
+The description of the configuration to deploy. 
+
 ## Example usage
 
 ```
@@ -27,6 +31,7 @@ uses: ironmansoftware/deploy-universal@v1
 with:
   url: 'http://localhost:5000'
   apptoken: ${{ secrets.UNIVERSAL_APP_TOKEN }}
-  name: 'PowerShellUniversal'
-  version: '1.0.0'
+  name: 'Production'
+  version: '1.4.1'
+  description: 'Production Configuration'
 ```
