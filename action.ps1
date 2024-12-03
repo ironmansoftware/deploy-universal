@@ -10,8 +10,8 @@ $ErrorActionPreference = "Stop"
 New-Item -Path /github/workspace/publish -ItemType Directory
 
 New-ModuleManifest -Path /github/workspace/$name.psd1 -ModuleVersion $Version -Description $Description 
-Compress-PSResource -Path /github/workspace -DestinationPath /github/workspace/publish/$Name.$Version.nupkg
+$Package = Compress-PSResource -Path /github/workspace -DestinationPath /github/workspace/publish -PassThru
 
 Invoke-WebRequest -Uri $Url -Headers @{
     "Authorization" = "Bearer $AppToken"
-} -InFile /github/workspace/publish/$Name.$Version.nupkg -Method Put -ContentType "application/octet-stream"
+} -InFile $Package -Method Put -ContentType "application/octet-stream"
